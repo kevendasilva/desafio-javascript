@@ -1,34 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 
-<html lang="pt-br">
-  	<head>
-    	<!-- Required meta tags -->
-    	<meta charset="utf-8">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+	<head>
 
-    	<!-- Bootstrap CSS -->
-    	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-		<link href="stylesheet/style.css" rel="stylesheet">
-    	<title>Desafio JavaScript</title>
-  	</head>
-  	<body class="bg-game">
+		<meta charset="utf-8">
+		<title>JS QUIZ</title>
+		<link rel="stylesheet" type="text/css" href="stylesheet/style.css">
 
-    	<section id="section">
-			<div class="container">
-				<div class="row justify-content-center bg-white p-4">
-					<div class="col text-center">
-						<p>
-						<h1 class="title" id="titulo">QUIZ DOS VALORES DA GTI</h1>
-						</p>
-						<form>
-						</form>
-						<button onclick="next()" type="button" class="btn btn-primary btn-lg my-4" id="btnNext">Começar</button>
-					</div>
-				</div>
-			</div>
-		</section>
+	</head>
 
-    	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-		<script type="text/javascript" src="scripts/script.js"></script>
+	<body>
+
+		<div class="conteudo">
+			<h1 id="titulo">QUIZ DOS VALORES DA GTI</h1>
+	
+			<ul id="listaRespostas">
+				<li><input type="radio" name="resposta" value="0"><span></span></li>
+
+				<li><input type="radio" name="resposta" value="1"><span></span></li>
+
+				<li><input type="radio" name="resposta" value="2"><span></span></li>
+
+				<li><input type="radio" name="resposta" value="3"><span></span></li>
+
+			</ul>
+
+		<div id="resultado"></div> 
+		
+			<button id="confirmar" onclick="mostrarQuestao()">COMEÇAR</button>
+		</div>
+
+		<script src="scripts/script.js"></script>
+
 	</body>
+
 </html>

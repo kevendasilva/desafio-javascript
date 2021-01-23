@@ -17,7 +17,10 @@ Inicio Algoritmo
 
     FUNÇÃO escreverQuestão()
         Titulo = questão[indQ].titulo
-        form = questões
+        form = gerarOpcoes();
+
+    FUNÇÃO geraOpcoes()
+        
 
     FUNÇÃO next()
         SE (!signal)

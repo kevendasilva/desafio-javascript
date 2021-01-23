@@ -1,52 +1,47 @@
 // Variáveis 
-
-// Link para perguntas/respostas
-let requestURL = 'https://quiz-trainee.herokuapp.com/questions';
-// Resposta
-let answer;
-// Instanciando um novo objeto XHR
-let request = new XMLHttpRequest();
-// Sinalizador
-let signal = false;
-// Num de questões
-let numQ;
-// Indice
-let indQ = 0;
-// Titulo
-let titulo = document.getElementById('titulo');
-// Botão Next
-let btnNext = document.getElementById('btnNext');
+let requestURL = 'https://quiz-trainee.herokuapp.com/questions'; // Link para perguntas/respostas
+let answer; // Resposta
+let request = new XMLHttpRequest(); // Instanciando um novo objeto XHR
+let signal = false; // Sinalizador
+let numQ; // Num de questões
+let indQ = 0; // Indice
+let titulo = document.getElementById('titulo'); // Titulo
+let btnConfirmar = document.getElementById('confirmar'); // Botão Next
+let divResultado = document.getElementById('resultado'); // Resultado
+let listaRespostas = document.getElementById('listaRespostas'); // Lista de respostas
 
 // Funções
-
-// Aguardando a Resposta
-request.onload = function(){
+request.onload = function(){ // Aguardando a Resposta
     answer = request.response;
     numQ = answer.length;
 }
-// escreverQuestao
-function escreverQuestao(){
+
+function escreverQuestao(){ // escreverQuestao
     console.log("Questão escrita com sucesso");
 }
-// finalizarQuiz
-function finalizarQuiz(){
-    btnNext.textContent = "Refazer quiz";
+
+function finalizarQuiz(){ // finalizarQuiz
+    btnConfirmar.textContent = "Refazer quiz";
     console.log("Quiz finalizado");
 }
-// reiniciarQuiz
-function reiniciarQuiz(){
+
+function reiniciarQuiz(){ // reiniciarQuiz
     console.log("Quiz reiniciado");
-    btnNext.textContent = "Próxima";
+    btnConfirmar.textContent = "Próxima";
     indQ = 0;
     escreverQuestao();
     indQ++;
 }
-// Teste
-function next(){
+
+function geraOpcoes(){ // geraOpcoes
+    
+}
+
+function mostrarQuestao(){ // mostrarQuestao
     if (!signal){
         signal = true;
         escreverQuestao();
-        btnNext.textContent = "Próxima";
+        btnConfirmar.textContent = "Próxima";
         indQ++;
     } else {
         if (indQ <= (numQ - 1)){
@@ -63,8 +58,6 @@ function next(){
     }
 }
 
-
-
 // "Main"
 
 // Abrindo uma solicitação
@@ -73,31 +66,3 @@ request.open('GET', requestURL, true);
 request.responseType = 'json';
 // Enviando o pedido 
 request.send();
-
-
-
-/*
-const inputext = document.querySelector("#inputext")
-const button = document.querySelector("#btn")
-const ListUl = document.querySelector(".lista")
-
-let signal = false;
-
-button.addEventListener("click", function(){
-        // Quantidade de itens na lista
-        const qtde = inputext.value 
-        const generator = conte(1, qtde)
-                        .map(y => `<li>Item ${y}</li>` )
-                        .join('')
-        // Alterando conteúdo de ListUl
-        ListUl.innerHTML = generator
-})
-
-function conte(inicio,fim){
-    let result = []
-    for(number = inicio; number <= fim; number++){
-        result.push(number)
-    }
-    return result;
-}
-*/
