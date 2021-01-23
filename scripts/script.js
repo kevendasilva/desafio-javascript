@@ -17,17 +17,24 @@ request.onload = function(){ // Aguardando a Resposta
 }
 
 function escreverQuestao(){ // escreverQuestao
+    titulo.textContent = answer[indQ].title;
+    for (let i = 1 ; i < 8 ; i += 2){
+        listaRespostas.childNodes[i].childNodes[1].textContent = answer[indQ].options[Math.floor(i / 2)].answer;
+    }
     console.log("Questão escrita com sucesso");
 }
 
 function finalizarQuiz(){ // finalizarQuiz
+    titulo.textContent = "QUIZ DOS VALORES DA GTI";
     btnConfirmar.textContent = "Refazer quiz";
+    listaRespostas.style.display = "none";
     console.log("Quiz finalizado");
 }
 
 function reiniciarQuiz(){ // reiniciarQuiz
     console.log("Quiz reiniciado");
     btnConfirmar.textContent = "Próxima";
+    listaRespostas.style.display = "block";
     indQ = 0;
     escreverQuestao();
     indQ++;
@@ -41,6 +48,7 @@ function mostrarQuestao(){ // mostrarQuestao
     if (!signal){
         signal = true;
         escreverQuestao();
+        listaRespostas.style.display = "block";
         btnConfirmar.textContent = "Próxima";
         indQ++;
     } else {
