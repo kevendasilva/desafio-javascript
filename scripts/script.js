@@ -12,6 +12,10 @@ let signal = false;
 let numQ;
 // Indice
 let indQ = 0;
+// Titulo
+let titulo = document.getElementById('titulo');
+// Botão Next
+let btnNext = document.getElementById('btnNext');
 
 // Funções
 
@@ -20,13 +24,42 @@ request.onload = function(){
     answer = request.response;
     numQ = answer.length;
 }
+// escreverQuestao
+function escreverQuestao(){
+    console.log("Questão escrita com sucesso");
+}
+// finalizarQuiz
+function finalizarQuiz(){
+    btnNext.textContent = "Refazer quiz";
+    console.log("Quiz finalizado");
+}
+// reiniciarQuiz
+function reiniciarQuiz(){
+    console.log("Quiz reiniciado");
+    btnNext.textContent = "Próxima";
+    indQ = 0;
+    escreverQuestao();
+    indQ++;
+}
 // Teste
 function next(){
     if (!signal){
-        console.log('Test');
         signal = true;
+        escreverQuestao();
+        btnNext.textContent = "Próxima";
+        indQ++;
     } else {
-        console.log('Acabou');
+        if (indQ < (numQ - 1)){
+            escreverQuestao();
+            indQ++;
+        } else {
+            if (indQ === (numQ-1)){
+                finalizarQuiz();
+                indQ++;
+            } else {
+                reiniciarQuiz();
+            }
+        }  
     }
 }
 
