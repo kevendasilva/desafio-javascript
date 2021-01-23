@@ -49,11 +49,11 @@ function next(){
         btnNext.textContent = "Próxima";
         indQ++;
     } else {
-        if (indQ < (numQ - 1)){
+        if (indQ <= (numQ - 1)){
             escreverQuestao();
             indQ++;
         } else {
-            if (indQ === (numQ-1)){
+            if (indQ === numQ){
                 finalizarQuiz();
                 indQ++;
             } else {

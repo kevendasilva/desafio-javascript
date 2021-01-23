@@ -26,11 +26,11 @@ Inicio Algoritmo
             btn.titulo = "Próxima"
             indQ++
         SENÃO
-            SE (indQ < (numQ - 1))
+            SE (indQ <= (numQ - 1))
                 escreverQuestão()
                 indQ++
             SENÃO  
-                SE (indQ = (numQ-1))
+                SE (indQ = (numQ))
                     finalizarQuiz()
                     indQ++              
                 SENÃO
