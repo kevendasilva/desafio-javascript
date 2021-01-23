@@ -1,0 +1,11 @@
+.bg-game {
+    background-image: url('../images/space.jpg');
+}
+
+.title {
+    color: blue;
+}
+
+#section {
+    margin-top: 250px;
+}
