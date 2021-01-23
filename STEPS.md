@@ -10,5 +10,3 @@
 	4.2) Comentar cada bloco;
 
 5) Procurar por bugs;
-
-6) Estilizar com CSS.  
