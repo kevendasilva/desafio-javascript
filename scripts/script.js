@@ -11,7 +11,7 @@ let btnConfirmar = document.getElementById('confirmar'); // Botão Next
 let divResultado = document.getElementById('resultado'); // Resultado
 let listaRespostas = document.getElementById('listaRespostas'); // Lista de respostas
 let inputL = listaRespostas.children;
-
+let sumPont = 0;
 
 // Funções
 request.onload = function(){ // Aguardando a Resposta
@@ -26,6 +26,20 @@ function radioSelect(){
 }
 for (let i = 0 ; i < 4 ; i++){
     listaRespostas.children[i].children[0].onclick = radioSelect;
+}
+
+// Somando os maiores valores atribuido as respostas de cada questão
+function sumPontos(){ // Supondo que os pesos possam mudar
+    let maior;
+    for (let i = 0 ; i < numQ ; i++){
+        maior = answer[i].options[0].value;
+        for (let u = 1 ; u < 4 ; u++){
+            if (answer[i].options[u].value > maior){
+                maior = answer[i].options[u].value;
+            }
+        }
+        sumPont += maior;
+    }
 }
 
 function limparSelecao(){ // Limpando seleção dos inputs
