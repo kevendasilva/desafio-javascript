@@ -1,22 +1,25 @@
 // Variáveis 
 let requestURL = 'https://quiz-trainee.herokuapp.com/questions'; // Link para perguntas/respostas
-let answer; // Resposta
 let request = new XMLHttpRequest(); // Instanciando um novo objeto XHR
 let signal = false; // Sinalizador
 let sigLis = false;
 let numQ; // Num de questões
+let answer; // Resposta
 let indQ = 0; // Indice
+let sumPont; // Maior pontuação possivel
+let sumJog = 0; // Pontuação do jogador
 let titulo = document.getElementById('titulo'); // Titulo
 let btnConfirmar = document.getElementById('confirmar'); // Botão Next
 let divResultado = document.getElementById('resultado'); // Resultado
 let listaRespostas = document.getElementById('listaRespostas'); // Lista de respostas
-let inputL = listaRespostas.children;
-let sumPont = 0;
+let resultFinal = document.getElementById('resultado');
+
 
 // Funções
 request.onload = function(){ // Aguardando a Resposta
     answer = request.response;
     numQ = answer.length;
+    sumPont = 3 * numQ;
 }
 
 // Ouvindo eventos que ocorrem com a listaRespostas.
@@ -24,28 +27,21 @@ function radioSelect(){
     sigLis = true;
     console.log("Para de clicar, pfv!");
 }
+
 for (let i = 0 ; i < 4 ; i++){
     listaRespostas.children[i].children[0].onclick = radioSelect;
-}
-
-// Somando os maiores valores atribuido as respostas de cada questão
-function sumPontos(){ // Supondo que os pesos possam mudar
-    let maior;
-    for (let i = 0 ; i < numQ ; i++){
-        maior = answer[i].options[0].value;
-        for (let u = 1 ; u < 4 ; u++){
-            if (answer[i].options[u].value > maior){
-                maior = answer[i].options[u].value;
-            }
-        }
-        sumPont += maior;
-    }
 }
 
 function limparSelecao(){ // Limpando seleção dos inputs
     sigLis = false;
     for (let i = 0 ; i < 4 ; i++){
-        listaRespostas.children[i].children[0].checked = false;
+        if ((listaRespostas.children[i].children[0].checked) === true){
+            listaRespostas.children[i].children[0].checked = false;
+            sumJog = (sumJog + answer[indQ - 1].options[i].value);
+            console.log(sumJog);
+        } else {
+            listaRespostas.children[i].children[0].checked = false;
+        }
     }
 }
 
@@ -58,9 +54,12 @@ function escreverQuestao(){ // escreverQuestao
 }
 
 function finalizarQuiz(){ // finalizarQuiz
+    let perPont = 0;
     sigLis = true;
     titulo.textContent = "QUIZ DOS VALORES DA GTI";
     listaRespostas.style.display = "none";
+    perPont = ((sumJog / sumPont) * 100);
+    resultFinal.textContent = "Sua pontuação: " + perPont + "%";
     btnConfirmar.textContent = "Refazer quiz";
     console.log("Quiz finalizado");
 }
@@ -68,8 +67,10 @@ function finalizarQuiz(){ // finalizarQuiz
 function reiniciarQuiz(){ // reiniciarQuiz
     console.log("Quiz reiniciado");
     listaRespostas.style.display = "block";
-    btnConfirmar.textContent = "Próxima";
+    resultFinal.textContent = "";
+    btnConfirmar.textContent = "PROXIMA";
     indQ = 0;
+    sumJog = 0;
     escreverQuestao();
     indQ++;
 }
@@ -79,7 +80,7 @@ function mostrarQuestao(){ // mostrarQuestao
         signal = true;
         escreverQuestao();
         listaRespostas.style.display = "block";
-        btnConfirmar.textContent = "Próxima";
+        btnConfirmar.textContent = "PROXIMA";
         indQ++;
     } else if (signal && sigLis) {
         limparSelecao();
